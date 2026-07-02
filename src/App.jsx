@@ -246,13 +246,24 @@ function Donar() {
         </div>
 
         <div className="donate-grid">
-          {PAY_METHODS.map((pay) => (
-            <div className="pay-card" key={pay.method}>
-              <span className="flag">{pay.flag}</span>
-              <span className="method">{pay.method}</span>
-              <span className="detail">{pay.detail}</span>
-            </div>
-          ))}
+          {PAY_METHODS.map((pay) =>
+            pay.url ? (
+              <a className="pay-card" key={pay.method} href={pay.url} target="_blank" rel="noopener">
+                <span className="flag">{pay.flag}</span>
+                <span className="method">
+                  {pay.method}
+                  <ExternalLinkIcon />
+                </span>
+                <span className="detail">{pay.detail}</span>
+              </a>
+            ) : (
+              <div className="pay-card" key={pay.method}>
+                <span className="flag">{pay.flag}</span>
+                <span className="method">{pay.method}</span>
+                <span className="detail">{pay.detail}</span>
+              </div>
+            ),
+          )}
           <a className="pay-card" href={PAYPAL_URL} target="_blank" rel="noopener">
             <span className="flag">🌎</span>
             <span className="method">

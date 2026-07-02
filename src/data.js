@@ -64,8 +64,13 @@ export const KITS = [
 
 export const PAY_METHODS = [
   { flag: '🇺🇸', method: 'Zelle', detail: '786-606-7034' },
-  { flag: '🇺🇸', method: 'Venmo', detail: '@toyiroca' },
+  { flag: '🇺🇸', method: 'Venmo', detail: '@toyiroca', url: 'https://account.venmo.com/u/toyiroca' },
   { flag: '🇪🇸', method: 'Bizum', detail: '691 691 662' },
   { flag: '🇪🇺', method: 'IBAN (Europa)', detail: 'Escríbenos por DM' },
-  { flag: '🇻🇪', method: 'Bolívares (Bs)', detail: 'Escríbenos por DM' },
+  {
+    flag: '🇻🇪',
+    method: 'Bolívares (Bs)',
+    detail: 'Escríbenos por DM',
+    url: 'https://www.instagram.com/kitsvzla',
+  },
 ]
