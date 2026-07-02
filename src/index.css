@@ -415,6 +415,17 @@ section{padding:64px 0;}
 }
 .kit-card li:last-child{border-bottom:none;}
 
+.kit-card-list-en{
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1.5px dashed rgba(231,225,245,0.3);
+}
+.kit-card-list-en li.en{
+  color:#D8CFF0;
+  opacity:0.85;
+  font-style:italic;
+}
+
 /* DONATE SECTION */
 .donate-grid{
   display:grid;

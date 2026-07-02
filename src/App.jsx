@@ -331,7 +331,14 @@ function Kits() {
               <h3>{kit.title}</h3>
               <ul>
                 {kit.items.map((item) => (
-                  <li key={item}>{item}</li>
+                  <li key={item.es}>{item.es}</li>
+                ))}
+              </ul>
+              <ul className="kit-card-list-en">
+                {kit.items.map((item) => (
+                  <li key={item.en} className="en">
+                    {item.en}
+                  </li>
                 ))}
               </ul>
             </div>
