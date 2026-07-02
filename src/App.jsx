@@ -1,8 +1,45 @@
+import { useEffect, useState } from 'react'
 import { KITS, PAY_METHODS } from './data'
-import { BagIcon, BoxesIcon, BrandMark, ExternalLinkIcon, HeartIcon, InstagramIcon } from './icons'
+import {
+  BagIcon,
+  BoxesIcon,
+  BrandMark,
+  CheckIcon,
+  CloseIcon,
+  CopyIcon,
+  ExternalLinkIcon,
+  HeartIcon,
+  InstagramIcon,
+  MenuIcon,
+} from './icons'
 
 const INSTAGRAM_URL = 'https://www.instagram.com/kitsvzla'
 const PAYPAL_URL = 'https://www.paypal.com/pool/9qnYFaMCCZ?sr=ancr'
+const NAV_SECTION_IDS = ['quienes', 'kits', 'donar']
+
+function useActiveSection(ids) {
+  const [active, setActive] = useState(null)
+
+  useEffect(() => {
+    const elements = ids.map((id) => document.getElementById(id)).filter(Boolean)
+    if (!elements.length) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+        if (visible[0]) setActive(visible[0].target.id)
+      },
+      { rootMargin: '-45% 0px -50% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] },
+    )
+
+    elements.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [ids])
+
+  return active
+}
 
 function Stitch() {
   return (
@@ -13,6 +50,10 @@ function Stitch() {
 }
 
 function Nav() {
+  const [open, setOpen] = useState(false)
+  const active = useActiveSection(NAV_SECTION_IDS)
+  const closeMenu = () => setOpen(false)
+
   return (
     <nav>
       <div className="wrap">
@@ -20,11 +61,34 @@ function Nav() {
           <BrandMark />
           kitsvzla
         </div>
-        <div className="nav-links">
-          <a href="#quienes">Quiénes somos</a>
-          <a href="#kits">Los kits</a>
-          <a href="#donar">Donar</a>
-          <a className="nav-cta" href={INSTAGRAM_URL} target="_blank" rel="noopener">
+
+        <button
+          type="button"
+          className="nav-toggle"
+          aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
+          aria-expanded={open}
+          onClick={() => setOpen((o) => !o)}
+        >
+          {open ? <CloseIcon /> : <MenuIcon />}
+        </button>
+
+        <div className={`nav-links${open ? ' open' : ''}`}>
+          <a href="#quienes" className={active === 'quienes' ? 'active' : ''} onClick={closeMenu}>
+            Quiénes somos
+          </a>
+          <a href="#kits" className={active === 'kits' ? 'active' : ''} onClick={closeMenu}>
+            Los kits
+          </a>
+          <a href="#donar" className={active === 'donar' ? 'active' : ''} onClick={closeMenu}>
+            Donar
+          </a>
+          <a
+            className="nav-cta"
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener"
+            onClick={closeMenu}
+          >
             Instagram
           </a>
         </div>
@@ -235,6 +299,44 @@ function Kits() {
   )
 }
 
+function PayCard({ pay }) {
+  const [copied, setCopied] = useState(false)
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(pay.detail)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 1600)
+    } catch {
+      // Clipboard API unavailable (unsupported browser or blocked permission); nothing to fall back to.
+    }
+  }
+
+  return (
+    <button
+      type="button"
+      className="pay-card"
+      onClick={handleCopy}
+      aria-label={`Copiar dato de pago de ${pay.method}: ${pay.detail}`}
+    >
+      <span className="flag">{pay.flag}</span>
+      <span className="method">{pay.method}</span>
+      <span className="detail">{pay.detail}</span>
+      <span className={`copy-hint${copied ? ' copied' : ''}`} aria-live="polite">
+        {copied ? (
+          <>
+            <CheckIcon /> ¡Copiado! · Copied
+          </>
+        ) : (
+          <>
+            <CopyIcon /> Copiar · Copy
+          </>
+        )}
+      </span>
+    </button>
+  )
+}
+
 function Donar() {
   return (
     <section id="donar">
@@ -247,11 +349,7 @@ function Donar() {
 
         <div className="donate-grid">
           {PAY_METHODS.map((pay) => (
-            <div className="pay-card" key={pay.method}>
-              <span className="flag">{pay.flag}</span>
-              <span className="method">{pay.method}</span>
-              <span className="detail">{pay.detail}</span>
-            </div>
+            <PayCard key={pay.method} pay={pay} />
           ))}
           <a className="pay-card" href={PAYPAL_URL} target="_blank" rel="noopener">
             <span className="flag">🌎</span>

@@ -81,6 +81,7 @@ nav{
   border-bottom:1px solid var(--lavender-line);
 }
 nav .wrap{
+  position:relative;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -98,8 +99,9 @@ nav .wrap{
 }
 .brand svg{width:28px;height:28px;flex-shrink:0;}
 .nav-links{display:flex;gap:26px;align-items:center;font-size:0.92rem;font-weight:600;}
-.nav-links a{color:var(--indigo);opacity:0.8;transition:opacity .2s;}
+.nav-links a{color:var(--indigo);opacity:0.8;transition:opacity .2s, color .2s;}
 .nav-links a:hover{opacity:1;}
+.nav-links a.active{opacity:1;color:var(--terracotta-deep);}
 .nav-cta{
   background:var(--indigo);
   color:var(--paper) !important;
@@ -109,8 +111,36 @@ nav .wrap{
   opacity:1 !important;
 }
 
+.nav-toggle{
+  display:none;
+  background:none;
+  border:none;
+  color:var(--indigo);
+  padding:6px;
+  border-radius:8px;
+  cursor:pointer;
+}
+.nav-toggle svg{width:22px;height:22px;display:block;}
+
 @media (max-width:640px){
-  .nav-links a:not(.nav-cta){display:none;}
+  .nav-toggle{display:flex;align-items:center;justify-content:center;}
+  .nav-links{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:0;
+    background:var(--paper);
+    border-bottom:1px solid var(--lavender-line);
+    padding:6px 28px 20px;
+    box-shadow:0 12px 24px rgba(51,42,107,0.1);
+  }
+  .nav-links.open{display:flex;}
+  .nav-links a:not(.nav-cta){width:100%;padding:12px 0;}
+  .nav-links .nav-cta{margin-top:12px;text-align:center;}
 }
 
 /* HERO */
@@ -393,15 +423,37 @@ section{padding:64px 0;}
   gap:6px;
   transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
 }
-a.pay-card:hover{
+.pay-card:hover{
   transform:translateY(-2px);
   box-shadow:0 6px 20px rgba(51,42,107,0.12);
   border-color:var(--purple);
 }
+button.pay-card{
+  font:inherit;
+  color:inherit;
+  text-align:left;
+  width:100%;
+  cursor:pointer;
+  appearance:none;
+}
+button.pay-card:focus-visible{outline:2.5px solid var(--terracotta);outline-offset:3px;}
 .pay-card .flag{font-size:1.4rem;}
 .pay-card .method{font-weight:700;font-size:1rem;color:var(--indigo);display:flex;align-items:center;gap:6px;}
 .pay-card .method svg{width:14px;height:14px;opacity:0.6;}
 .pay-card .detail{font-size:0.9rem;color:var(--ink);opacity:0.8;}
+.pay-card .copy-hint{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  font-size:0.78rem;
+  color:var(--purple);
+  opacity:0.6;
+  margin-top:2px;
+  transition:opacity .15s ease, color .15s ease;
+}
+.pay-card .copy-hint svg{width:13px;height:13px;}
+.pay-card:hover .copy-hint{opacity:0.9;}
+.pay-card .copy-hint.copied{color:#1F6E52;opacity:1;}
 
 .donate-note{
   margin-top:22px;
