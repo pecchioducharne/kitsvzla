@@ -1,9 +1,10 @@
 import { useState } from 'react'
+import heroStreet from './assets/hero-street.jpg'
+import mascot from './assets/kitsvzla-mascot-icon.png'
 import { KITS, PAY_METHODS } from './data'
 import {
   BagIcon,
   BoxesIcon,
-  BrandMark,
   CheckIcon,
   CopyIcon,
   ExternalLinkIcon,
@@ -52,7 +53,7 @@ function Nav() {
     <nav>
       <div className="wrap">
         <div className="brand">
-          <BrandMark />
+          <img src={mascot} alt="" className="brand-mark" />
           kitsvzla
         </div>
         <div className="nav-links">
@@ -71,32 +72,46 @@ function Nav() {
 function Hero() {
   return (
     <header className="hero">
-      <div className="wrap">
-        <div className="eyebrow">
-          <span className="dot" /> @kitsvzla · Caracas &amp; La Guaira
-        </div>
-        <h1>Ayuda que camina directo a quien la necesita</h1>
-        <span className="en">Relief that walks straight to the people who need it.</span>
+      <div className="wrap hero-grid">
+        <div className="hero-text">
+          <div className="eyebrow">
+            <span className="dot" /> @kitsvzla · Caracas &amp; La Guaira
+          </div>
+          <h1>Ayuda que camina directo a quien la necesita</h1>
+          <span className="en">Relief that walks straight to the people who need it.</span>
 
-        <p className="hero-body">
-          Somos un grupo de familia, amigos y voluntarios en Venezuela armando y entregando kits
-          de ayuda para pacientes en hospitales y familias en refugios afectados por el terremoto.
-        </p>
-        <p className="hero-body en-body">
-          We're a group of family, friends and volunteers in Venezuela putting together and
-          delivering relief kits for hospital patients and families in shelters affected by the
-          earthquake.
-        </p>
+          <p className="hero-body">
+            Somos un grupo de familia, amigos y voluntarios en Venezuela armando y entregando kits
+            de ayuda para pacientes en hospitales y familias en refugios afectados por el
+            terremoto.
+          </p>
+          <p className="hero-body en-body">
+            We're a group of family, friends and volunteers in Venezuela putting together and
+            delivering relief kits for hospital patients and families in shelters affected by the
+            earthquake.
+          </p>
 
-        <div className="btn-row">
-          <a className="btn btn-primary" href={INSTAGRAM_URL} target="_blank" rel="noopener">
-            <InstagramIcon />
-            Síguenos en Instagram
-          </a>
-          <a className="btn btn-secondary" href="#donar">
-            Quiero ayudar / I want to help
-          </a>
+          <div className="btn-row">
+            <a className="btn btn-primary" href={INSTAGRAM_URL} target="_blank" rel="noopener">
+              <InstagramIcon />
+              Síguenos en Instagram
+            </a>
+            <a className="btn btn-secondary" href="#donar">
+              Quiero ayudar / I want to help
+            </a>
+          </div>
         </div>
+
+        <figure className="hero-photo">
+          <img
+            src={heroStreet}
+            alt="Voluntaria y niño caminando por una calle de La Guaira tras el terremoto, con un morral azul de kitsvzla"
+          />
+          <figcaption>
+            En terreno en La Guaira
+            <span className="en">On the ground in La Guaira</span>
+          </figcaption>
+        </figure>
       </div>
     </header>
   )

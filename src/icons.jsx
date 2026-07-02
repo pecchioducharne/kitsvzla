@@ -58,15 +58,3 @@ export function CheckIcon(props) {
     </svg>
   )
 }
-
-export function BrandMark(props) {
-  return (
-    <svg viewBox="0 0 48 48" fill="none" {...props}>
-      <rect x="10" y="16" width="28" height="26" rx="7" fill="#6152A0" />
-      <path d="M17 16V12C17 8.68629 19.6863 6 23 6H25C28.3137 6 31 8.68629 31 12V16" stroke="#332A6B" strokeWidth="3" strokeLinecap="round" />
-      <rect x="20" y="22" width="8" height="6" rx="2" fill="#F7F2E7" />
-      <line x1="10" y1="26" x2="4" y2="26" stroke="#332A6B" strokeWidth="2.5" strokeLinecap="round" />
-      <line x1="38" y1="26" x2="44" y2="26" stroke="#332A6B" strokeWidth="2.5" strokeLinecap="round" />
-    </svg>
-  )
-}
