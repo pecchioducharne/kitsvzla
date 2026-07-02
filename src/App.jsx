@@ -1,5 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import heroStreet from './assets/hero-street.jpg'
+import heroStreet2 from './assets/hero-2.jpg'
+import heroVideo1 from './assets/hero-video-1.mp4'
+import heroVideo2 from './assets/hero-video-2.mp4'
+import heroVideo3 from './assets/hero-video-3.mp4'
 import mascot from './assets/kitsvzla-mascot-icon.png'
 import { KITS, PAY_METHODS } from './data'
 import {
@@ -37,6 +41,68 @@ function CopyButton({ value }) {
     >
       {copied ? <CheckIcon /> : <CopyIcon />}
     </button>
+  )
+}
+
+const HERO_SLIDES = [
+  { type: 'image', src: heroStreet },
+  { type: 'video', src: heroVideo1 },
+  { type: 'image', src: heroStreet2 },
+  { type: 'video', src: heroVideo2 },
+  { type: 'video', src: heroVideo3 },
+]
+const HERO_IMAGE_DURATION = 4500
+
+function HeroMedia() {
+  const [active, setActive] = useState(0)
+  const videoRefs = useRef([])
+
+  useEffect(() => {
+    const slide = HERO_SLIDES[active]
+    if (slide.type === 'image') {
+      const timer = setTimeout(() => {
+        setActive((i) => (i + 1) % HERO_SLIDES.length)
+      }, HERO_IMAGE_DURATION)
+      return () => clearTimeout(timer)
+    }
+
+    const video = videoRefs.current[active]
+    if (video) {
+      video.currentTime = 0
+      video.play().catch(() => {})
+    }
+    return undefined
+  }, [active])
+
+  const handleVideoEnded = () => {
+    setActive((i) => (i + 1) % HERO_SLIDES.length)
+  }
+
+  return (
+    <figure className="hero-photo">
+      {HERO_SLIDES.map((slide, i) =>
+        slide.type === 'image' ? (
+          <img
+            key={slide.src}
+            src={slide.src}
+            alt=""
+            className={`hero-slide ${i === active ? 'is-active' : ''}`}
+          />
+        ) : (
+          <video
+            key={slide.src}
+            ref={(el) => {
+              videoRefs.current[i] = el
+            }}
+            src={slide.src}
+            className={`hero-slide ${i === active ? 'is-active' : ''}`}
+            muted
+            playsInline
+            onEnded={i === active ? handleVideoEnded : undefined}
+          />
+        ),
+      )}
+    </figure>
   )
 }
 
@@ -102,16 +168,7 @@ function Hero() {
           </div>
         </div>
 
-        <figure className="hero-photo">
-          <img
-            src={heroStreet}
-            alt="Voluntaria y niño caminando por una calle de La Guaira tras el terremoto, con un morral azul de kitsvzla"
-          />
-          <figcaption>
-            En terreno en La Guaira
-            <span className="en">On the ground in La Guaira</span>
-          </figcaption>
-        </figure>
+        <HeroMedia />
       </div>
     </header>
   )
