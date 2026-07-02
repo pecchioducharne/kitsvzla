@@ -403,6 +403,34 @@ a.pay-card:hover{
 .pay-card .method svg{width:14px;height:14px;opacity:0.6;}
 .pay-card .detail{font-size:0.9rem;color:var(--ink);opacity:0.8;}
 
+.detail-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+.detail-value{
+  font-family:ui-monospace, 'SF Mono', Menlo, monospace;
+  letter-spacing:0.01em;
+}
+
+.copy-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:26px;height:26px;
+  flex-shrink:0;
+  border-radius:8px;
+  border:1.5px solid var(--lavender-line);
+  background:var(--lavender);
+  color:var(--purple);
+  cursor:pointer;
+  transition:background .15s ease, border-color .15s ease, transform .1s ease;
+}
+.copy-btn svg{width:13px;height:13px;}
+.copy-btn:hover{background:var(--paper);border-color:var(--purple);}
+.copy-btn:active{transform:scale(0.94);}
+
 .donate-note{
   margin-top:22px;
   background:var(--lavender);

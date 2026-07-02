@@ -1,8 +1,43 @@
+import { useState } from 'react'
 import { KITS, PAY_METHODS } from './data'
-import { BagIcon, BoxesIcon, BrandMark, ExternalLinkIcon, HeartIcon, InstagramIcon } from './icons'
+import {
+  BagIcon,
+  BoxesIcon,
+  BrandMark,
+  CheckIcon,
+  CopyIcon,
+  ExternalLinkIcon,
+  HeartIcon,
+  InstagramIcon,
+} from './icons'
 
 const INSTAGRAM_URL = 'https://www.instagram.com/kitsvzla'
 const PAYPAL_URL = 'https://www.paypal.com/pool/9qnYFaMCCZ?sr=ancr'
+
+function CopyButton({ value }) {
+  const [copied, setCopied] = useState(false)
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(value)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 1500)
+    } catch {
+      // clipboard unavailable — nothing to do
+    }
+  }
+
+  return (
+    <button
+      type="button"
+      className="copy-btn"
+      onClick={handleCopy}
+      aria-label={copied ? 'Copiado' : `Copiar ${value}`}
+    >
+      {copied ? <CheckIcon /> : <CopyIcon />}
+    </button>
+  )
+}
 
 function Stitch() {
   return (
@@ -260,7 +295,10 @@ function Donar() {
               <div className="pay-card" key={pay.method}>
                 <span className="flag">{pay.flag}</span>
                 <span className="method">{pay.method}</span>
-                <span className="detail">{pay.detail}</span>
+                <span className="detail detail-row">
+                  <span className="detail-value">{pay.detail}</span>
+                  {pay.copy && <CopyButton value={pay.copy} />}
+                </span>
               </div>
             ),
           )}
