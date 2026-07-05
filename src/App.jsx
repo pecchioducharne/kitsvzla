@@ -313,37 +313,44 @@ function Kits() {
 
         <div className="kits-intro">
           <p>
-            Estos son los insumos con los que trabajamos y que pedimos en donación. Según lo que
-            necesite cada persona o familia, combinamos artículos de estas categorías para armar
-            su bulto.
+            Estos son los insumos con los que trabajamos y que pedimos en donación. Armamos dos
+            tipos de bulto — el Kit Familiar y el Kit para Niños — combinando artículos de estas
+            categorías según lo que necesite cada persona o familia.
           </p>
           <p className="en">
-            These are the supplies we work with and ask for as donations. Depending on what each
-            person or family needs, we combine items from these categories to put their bag
-            together.
+            These are the supplies we work with and ask for as donations. We put together two
+            types of bag — the Family Kit and the Kids Kit — combining items from these
+            categories depending on what each person or family needs.
           </p>
         </div>
 
-        <div className="kit-grid">
-          {KITS.map((kit) => (
-            <div key={kit.key} className={`kit-card kit-${kit.key}`}>
-              <span className="tag">{kit.tag}</span>
-              <h3>{kit.title}</h3>
-              <ul>
-                {kit.items.map((item) => (
-                  <li key={item.es}>{item.es}</li>
-                ))}
-              </ul>
-              <ul className="kit-card-list-en">
-                {kit.items.map((item) => (
-                  <li key={item.en} className="en">
-                    {item.en}
-                  </li>
-                ))}
-              </ul>
+        {KITS.map((kit) => (
+          <div key={kit.key} className="kit-group">
+            <h3 className="kit-group-title">
+              {kit.name} <span className="en">{kit.nameEn}</span>
+            </h3>
+            <div className="kit-grid">
+              {kit.categories.map((cat) => (
+                <div key={cat.key} className={`kit-card kit-${cat.key}`}>
+                  <span className="tag">{cat.tag}</span>
+                  <h3>{cat.title}</h3>
+                  <ul>
+                    {cat.items.map((item) => (
+                      <li key={item.es}>{item.es}</li>
+                    ))}
+                  </ul>
+                  <ul className="kit-card-list-en">
+                    {cat.items.map((item) => (
+                      <li key={item.en} className="en">
+                        {item.en}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   )
@@ -378,6 +385,12 @@ function Donar() {
                   <span className="detail-value">{pay.detail}</span>
                   {pay.copy && <CopyButton value={pay.copy} />}
                 </span>
+                {pay.detail2 && (
+                  <span className="detail detail-row">
+                    <span className="detail-value">{pay.detail2}</span>
+                    {pay.copy2 && <CopyButton value={pay.copy2} />}
+                  </span>
+                )}
               </div>
             ),
           )}
