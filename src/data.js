@@ -6,7 +6,7 @@ export const KITS = [
     categories: [
       {
         key: 'hygiene',
-        tag: '🧼 Higiene personal',
+        tag: '🧼 Higiene Personal',
         title: 'Personal hygiene',
         items: [
           { es: 'Jabón en barra', en: 'Bar soap' },
@@ -28,7 +28,7 @@ export const KITS = [
           { es: 'Tapabocas', en: 'Face masks' },
           { es: 'Ibuprofeno', en: 'Ibuprofen' },
           { es: 'Acetaminofén', en: 'Acetaminophen' },
-          { es: 'Protector solar', en: 'Sunscreen' },
+          { es: 'Protector Solar', en: 'Sunscreen' },
           { es: 'Repelente', en: 'Insect repellent' },
         ],
       },
@@ -48,15 +48,15 @@ export const KITS = [
         tag: '🏠 Esenciales',
         title: 'Essentials',
         items: [
-          { es: 'Cobijas / Toallas', en: 'Blankets / towels' },
+          { es: 'Cobijas/Toallas', en: 'Blankets / towels' },
           { es: 'Gorras', en: 'Caps' },
           { es: 'Bolsas de basura', en: 'Trash bags' },
-          { es: 'Agua / Gatorade', en: 'Water / Gatorade' },
+          { es: 'Agua/Gatorade', en: 'Water / Gatorade' },
         ],
       },
       {
         key: 'emotional',
-        tag: '🙏 Apoyo emocional',
+        tag: '🙏 Apoyo Emocional',
         title: 'Emotional support',
         items: [{ es: 'Estampitas bendecidas', en: 'Blessed prayer cards' }],
       },
@@ -69,15 +69,15 @@ export const KITS = [
     categories: [
       {
         key: 'hygiene',
-        tag: '🧼 Higiene personal',
+        tag: '🧼 Higiene Personal',
         title: 'Personal hygiene',
         items: [
           { es: 'Cepillo dental de niños', en: "Kids' toothbrush" },
           { es: 'Pasta dental de niños', en: "Kids' toothpaste" },
           { es: 'Shampoo', en: 'Shampoo' },
           { es: 'Talco', en: 'Baby powder' },
-          { es: 'Jabón líquido', en: 'Liquid soap' },
-          { es: 'Cepillo o peine', en: 'Brush or comb' },
+          { es: 'Jabón Líquido', en: 'Liquid soap' },
+          { es: 'Cepillo o Peine', en: 'Brush or comb' },
         ],
       },
       {
