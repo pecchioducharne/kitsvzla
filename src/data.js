@@ -107,9 +107,16 @@ export const KITS = [
 ]
 
 export const PAY_METHODS = [
-  { flag: '🇺🇸', method: 'Zelle', detail: '786-606-7034', copy: '7866067034' },
+  {
+    flag: '🇺🇸',
+    method: 'Zelle',
+    detail: '786-606-7034',
+    copy: '7866067034',
+    name: 'Victoria Gómez Roca',
+  },
   { flag: '🇺🇸', method: 'Venmo', detail: '@toyiroca', url: 'https://account.venmo.com/u/toyiroca' },
   { flag: '🇪🇸', method: 'Bizum', detail: '691-691-662', copy: '691691662' },
+  { flag: '🇵🇦', method: 'Yappy (Panamá)', detail: '+507 6578-6998', copy: '65786998' },
   {
     flag: '🪙',
     method: 'Binance',

@@ -391,6 +391,7 @@ function Donar() {
                     {pay.copy2 && <CopyButton value={pay.copy2} />}
                   </span>
                 )}
+                {pay.name && <span className="account-name">{pay.name}</span>}
               </div>
             ),
           )}
