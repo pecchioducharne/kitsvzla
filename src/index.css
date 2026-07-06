@@ -468,6 +468,7 @@ a.pay-card:hover{
 .pay-card .method{font-weight:700;font-size:1rem;color:var(--indigo);display:flex;align-items:center;gap:6px;}
 .pay-card .method svg{width:14px;height:14px;opacity:0.6;}
 .pay-card .detail{font-size:0.9rem;color:var(--ink);opacity:0.8;}
+.pay-card .account-name{font-size:0.82rem;color:var(--ink);opacity:0.65;}
 
 .detail-row{
   display:flex;
