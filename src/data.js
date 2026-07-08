@@ -6,8 +6,9 @@ export const KITS = [
     categories: [
       {
         key: 'hygiene',
-        tag: '🧼 Higiene Personal',
-        title: 'Personal hygiene',
+        emoji: '🧼',
+        es: 'Higiene Personal',
+        en: 'Personal hygiene',
         items: [
           { es: 'Jabón en barra', en: 'Bar soap' },
           { es: 'Cepillo dental', en: 'Toothbrush' },
@@ -20,8 +21,9 @@ export const KITS = [
       },
       {
         key: 'emergency',
-        tag: '🚑 Emergencia',
-        title: 'Emergency',
+        emoji: '🚑',
+        es: 'Emergencia',
+        en: 'Emergency',
         items: [
           { es: 'Alcohol en spray', en: 'Alcohol spray' },
           { es: 'Curitas', en: 'Band-aids' },
@@ -34,8 +36,9 @@ export const KITS = [
       },
       {
         key: 'snacks',
-        tag: '🍪 Snacks',
-        title: 'Snacks',
+        emoji: '🍪',
+        es: 'Snacks',
+        en: 'Snacks',
         items: [
           { es: 'Compotas', en: 'Fruit purée pouches' },
           { es: 'Susy', en: 'Susy (chocolate wafer)' },
@@ -45,8 +48,9 @@ export const KITS = [
       },
       {
         key: 'essentials',
-        tag: '🏠 Esenciales',
-        title: 'Essentials',
+        emoji: '🏠',
+        es: 'Esenciales',
+        en: 'Essentials',
         items: [
           { es: 'Cobijas/Toallas', en: 'Blankets / towels' },
           { es: 'Gorras', en: 'Caps' },
@@ -56,8 +60,9 @@ export const KITS = [
       },
       {
         key: 'emotional',
-        tag: '🙏 Apoyo Emocional',
-        title: 'Emotional support',
+        emoji: '🙏',
+        es: 'Apoyo Emocional',
+        en: 'Emotional support',
         items: [{ es: 'Estampitas bendecidas', en: 'Blessed prayer cards' }],
       },
     ],
@@ -69,8 +74,9 @@ export const KITS = [
     categories: [
       {
         key: 'hygiene',
-        tag: '🧼 Higiene Personal',
-        title: 'Personal hygiene',
+        emoji: '🧼',
+        es: 'Higiene Personal',
+        en: 'Personal hygiene',
         items: [
           { es: 'Cepillo dental de niños', en: "Kids' toothbrush" },
           { es: 'Pasta dental de niños', en: "Kids' toothpaste" },
@@ -82,8 +88,9 @@ export const KITS = [
       },
       {
         key: 'snacks',
-        tag: '🍪 Snacks',
-        title: 'Snacks',
+        emoji: '🍪',
+        es: 'Snacks',
+        en: 'Snacks',
         items: [
           { es: 'Juguito', en: 'Juice box' },
           { es: 'Compotas', en: 'Fruit purée pouches' },
@@ -93,8 +100,9 @@ export const KITS = [
       },
       {
         key: 'kids',
-        tag: '🧸 Esenciales',
-        title: 'Essentials',
+        emoji: '🧸',
+        es: 'Esenciales',
+        en: 'Essentials',
         items: [
           { es: 'Juguete', en: 'Toy' },
           { es: 'Libro para colorear', en: 'Coloring book' },
@@ -129,12 +137,38 @@ export const PAY_METHODS = [
     flag: '🇪🇺',
     method: 'IBAN (Europa)',
     detail: 'Escríbenos por DM',
+    detailEn: 'Message us via DM',
     url: 'https://www.instagram.com/kitsvzla',
   },
   {
     flag: '🇻🇪',
     method: 'Bolívares (Bs)',
     detail: 'Escríbenos por DM',
+    detailEn: 'Message us via DM',
     url: 'https://www.instagram.com/kitsvzla',
   },
 ]
+
+// Impact dashboard — números que se muestran en la sección "Nuestro impacto".
+// ⚠️ Actualiza estos valores con los datos reales del Excel. Usa '—' si aún no hay dato.
+export const IMPACT = {
+  // Pega aquí el link público al Excel / Google Sheet para mostrar el botón "Ver detalle".
+  // Déjalo como '' (vacío) para ocultar el botón.
+  sheetUrl: '',
+  stats: [
+    { emoji: '🎒', value: '—', es: 'Kits armados', en: 'Kits assembled' },
+    { emoji: '🤝', value: '—', es: 'Recibido en donaciones', en: 'Donations received' },
+    { emoji: '🛒', value: '—', es: 'Invertido en insumos', en: 'Spent on supplies' },
+  ],
+}
+
+// Barra de meta de recaudación. Actualiza `raised` a medida que entren donaciones.
+export const GOAL = {
+  currency: '$',
+  target: 5000,
+  raised: 0,
+  note: {
+    es: 'Nuestra meta: $5.000 en los próximos 2 meses',
+    en: 'Our goal: $5,000 over the next 2 months',
+  },
+}
